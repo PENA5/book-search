@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ToastContainer } from "react-toastify";
-import { Route, Redirect, Switch } from "react-router-dom";
+
+import { BrowserRouter, Route } from "react-router-dom";
 import Search from "./pages/search.js";
 import Saved from "./pages/save";
 import NotFound from "./pages/notFound";
@@ -13,24 +14,27 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <BrowserRouter>
         <ToastContainer />
         <section className="hero-is-fullheight">
           <div className="head-head">
             <NavBar />
           </div>
           <div className="head-body">
-            <Switch>
-              <Route path="/search" component={Search} />
-              <Route path="/saved" component={Saved} />
+            {/* <Switch> */}
+              <Route exact path="/" component={Search} />
+              <Route exact path="/search" component={Search} />
+              <Route exact path="/saved" component={Saved} />
               <Route path="/not-found" component={NotFound} />
-              <Redirect from="/" exact to="/search" />
-              <Redirect to="/not-found" />
-            </Switch>
+              {/* <Redirect from="/" exact to="/search" /> */}
+              {/* <Redirect to="/not-found" /> */}
+            {/* </Switch> */}
           </div>
           <div className="head-foot">
             <Footer />
           </div>
         </section>
+        </BrowserRouter>
       </React.Fragment>
     );
   }
